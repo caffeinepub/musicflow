@@ -1,0 +1,144 @@
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque[opsz,wdth,wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Outfit";
+  src: url("/assets/fonts/Outfit[wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0.10 0.008 262;
+    --foreground: 0.96 0.005 262;
+    --card: 0.13 0.010 262;
+    --card-foreground: 0.96 0.005 262;
+    --popover: 0.15 0.012 262;
+    --popover-foreground: 0.96 0.005 262;
+    --primary: 0.84 0.22 142;
+    --primary-foreground: 0.10 0.008 262;
+    --secondary: 0.18 0.012 262;
+    --secondary-foreground: 0.85 0.008 262;
+    --muted: 0.17 0.010 262;
+    --muted-foreground: 0.52 0.015 262;
+    --accent: 0.84 0.22 142;
+    --accent-foreground: 0.10 0.008 262;
+    --destructive: 0.62 0.20 25;
+    --destructive-foreground: 0.96 0.005 262;
+    --border: 0.22 0.012 262;
+    --input: 0.22 0.012 262;
+    --ring: 0.84 0.22 142;
+    --radius: 0.75rem;
+    --chart-1: 0.84 0.22 142;
+    --chart-2: 0.72 0.18 200;
+    --chart-3: 0.75 0.20 310;
+    --chart-4: 0.80 0.18 60;
+    --chart-5: 0.68 0.22 25;
+    --sidebar: 0.10 0.008 262;
+    --sidebar-foreground: 0.96 0.005 262;
+    --sidebar-primary: 0.84 0.22 142;
+    --sidebar-primary-foreground: 0.10 0.008 262;
+    --sidebar-accent: 0.18 0.012 262;
+    --sidebar-accent-foreground: 0.85 0.008 262;
+    --sidebar-border: 0.22 0.012 262;
+    --sidebar-ring: 0.84 0.22 142;
+  }
+}
+
+html {
+  color-scheme: dark;
+}
+
+* {
+  border-color: oklch(var(--border));
+}
+
+body {
+  background-color: oklch(var(--background));
+  color: oklch(var(--foreground));
+  font-family: "Outfit", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--border));
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--muted-foreground));
+}
+
+/* Player progress & volume slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-track {
+  background: oklch(var(--border));
+  height: 3px;
+  border-radius: 2px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: oklch(var(--primary));
+  margin-top: -4.5px;
+  transition: transform 0.15s;
+}
+input[type="range"]:hover::-webkit-slider-thumb {
+  transform: scale(1.3);
+}
+input[type="range"]:focus-visible {
+  outline: none;
+}
+input[type="range"]:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px oklch(var(--ring) / 0.5);
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.08); opacity: 0.3; }
+  100% { transform: scale(1); opacity: 0.6; }
+}
+
+.pulse-ring {
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.spin-slow.paused {
+  animation-play-state: paused;
+}
